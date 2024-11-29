@@ -10,7 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class Testcontactus():
   def setup_method(self, method):
-    self.driver = webdriver.Chrome()
+    #self.driver = webdriver.Chrome()
+    self.driver = webdriver.Edge()
     self.driver.get("https://www.telerik.com/")
     self.driver.maximize_window()
   
@@ -63,6 +64,9 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: valid inputs, e2e test")
 
     time.sleep(60)
+
+
+    #OptInOutField-1
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 

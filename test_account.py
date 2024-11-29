@@ -11,7 +11,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class TestTestaccount():
   def setup_method(self, method):
-    self.driver = webdriver.Chrome()
+    #self.driver = webdriver.Chrome()
+    self.driver = webdriver.Edge()
+
     self.driver.get("https://www.telerik.com/")
     self.driver.maximize_window()
   

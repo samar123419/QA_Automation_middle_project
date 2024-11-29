@@ -3,20 +3,19 @@ import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
 
 class TestTitles():
   def setup_method(self, method):
-    self.driver = webdriver.Chrome()
+    #self.driver = webdriver.Chrome()
+    self.driver = webdriver.Edge()
+
     self.driver.get("https://www.telerik.com/")
     self.driver.maximize_window() 
 
   def teardown_method(self, method):
     self.driver.quit()
+
   
   def test_Button_TelerikDevCraft(self):
     self.driver.find_element(By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[1]/div[2]/div[1]/div/div/div[2]/a").click() 
