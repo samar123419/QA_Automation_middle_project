@@ -58,15 +58,15 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textbox-4").click()
     self.driver.find_element(By.ID, "Textbox-4").send_keys("142")
 
-    self.driver.execute_script("window.scrollTo(0, 500)")
+    self.driver.execute_script("window.scrollTo(0, 700)")
 
     self.driver.find_element(By.ID, "Textarea-1").click()
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: valid inputs, e2e test")
 
-    time.sleep(5)
-    element = self.driver.find_element(By.CSS_SELECTOR, "#OptInOutField-1")
-    if element.is_displayed:
-      element.click()
+    # time.sleep(5)
+    # element = self.driver.find_element(By.CSS_SELECTOR, "#OptInOutField-1")
+    # if element.is_displayed:
+    #   element.click()
 
     #OptInOutField-1
     time.sleep(2)
