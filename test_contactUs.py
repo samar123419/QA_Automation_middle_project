@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class Testcontactus():
   def setup_method(self, method):
-    #self.driver = webdriver.Chrome()
-    self.driver = webdriver.Edge()
+    self.driver = webdriver.Chrome()
+    # self.driver = webdriver.Edge()
     self.driver.get("https://www.telerik.com/")
     self.driver.maximize_window()
   
@@ -63,15 +63,17 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").click()
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: valid inputs, e2e test")
 
-    time.sleep(60)
-
+    time.sleep(5)
+    element = self.driver.find_element(By.CSS_SELECTOR, "#OptInOutField-1")
+    if element.is_displayed:
+      element.click()
 
     #OptInOutField-1
-
+    time.sleep(2)
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
     """if check box appear manual check"""
-    time.sleep(50)
+    time.sleep(5)
 
     WebDriverWait(self.driver, 50).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "#ContentPlaceholder1_C018_Col01 > h1")))
     assert "Thank you for contacting us" in self.driver.title
@@ -121,7 +123,8 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: unselect option")
 
     self.driver.execute_script("window.scrollTo(0, 600)")
-    # time.sleep(5)
+   
+    time.sleep(2)
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
@@ -174,7 +177,8 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: unselect option")
 
     self.driver.execute_script("window.scrollTo(0, 600)")
-    # time.sleep(5)
+    
+    time.sleep(2)
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
@@ -226,7 +230,7 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: empty first name field")
 
     self.driver.execute_script("window.scrollTo(0, 600)")
-    # time.sleep(5)
+    time.sleep(2)
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
@@ -279,11 +283,11 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").click()
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: empty last name field")
 
-    time.sleep(5)
+    time.sleep(2)
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
-    time.sleep(5)
+    time.sleep(2)
 
     # WebDriverWait(self.driver, 60).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "#form--1 > form > div > div.sf-fieldWrp.Required.sfErrorWrp > p")))
     assert self.driver.find_element(By.CSS_SELECTOR, ".sfError").text == "Last name is required"
@@ -333,11 +337,11 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").click()
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: special characters in last name field")
 
-    time.sleep(10)
+    time.sleep(2)
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
-    time.sleep(10)
+    time.sleep(2)
 
     WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR,".sfError")))
     assert "Your Last name has special characters." in self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
@@ -385,11 +389,11 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").click()
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: empty email address field")
 
-    time.sleep(5)
+    time.sleep(2)
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
-    time.sleep(5)
+    time.sleep(2)
 
     WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, ".sfError")))
     assert "Email address is required" in self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
@@ -438,11 +442,11 @@ class Testcontactus():
     self.driver.find_element(By.ID, "Textarea-1").click()
     self.driver.find_element(By.ID, "Textarea-1").send_keys("comments: email@home")
 
-    time.sleep(5)
+    time.sleep(2)
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
-    time.sleep(5)
+    time.sleep(2)
 
     WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "#form--1 > form > div > div.sf-fieldWrp.Required.sfErrorWrp > p")))
     assert "Email address is invalid" in self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div.sf-fieldWrp.Required.sfErrorWrp > p").text
