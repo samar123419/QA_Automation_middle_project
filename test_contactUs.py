@@ -17,7 +17,7 @@ class Testcontactus():
   
   def teardown_method(self, method):
     self.driver.quit()
-  
+
   def test_valid_inputs(self):
     self.driver.find_element(By.CSS_SELECTOR, ".TK-Button--CTA-Sec").click()
     time.sleep(2)
@@ -129,7 +129,8 @@ class Testcontactus():
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
     # time.sleep(2)
-    WebDriverWait(self.driver, 40).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, ".sfError")))
+    self.driver.implicitly_wait(5)  
+    # WebDriverWait(self.driver, 40).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, ".sfError")))
     assert "Please select an option" in self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
   
   def test_unselect_product_interest(self): 
@@ -559,7 +560,7 @@ class Testcontactus():
 
     self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div:nth-child(13) > button").click()
 
-    time.sleep(5)
-
-    assert "Invalid phone number" in  self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
+    time.sleep(2)
+    WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".sfError")))
+    assert "Invalid phone number" in self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
 
