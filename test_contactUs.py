@@ -239,6 +239,7 @@ class Testcontactus():
     WebDriverWait(self.driver, 40).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, ".sfError")))
     assert "First name is required" in self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
  
+  @pytest.mark.last
   def test_empty_last_name_field(self):
     self.driver.find_element(By.CSS_SELECTOR, ".TK-Button--CTA-Sec").click()
     dropdown = self.driver.find_element(By.ID, "Dropdown-1")
@@ -293,6 +294,7 @@ class Testcontactus():
     # WebDriverWait(self.driver, 60).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "#form--1 > form > div > div.sf-fieldWrp.Required.sfErrorWrp > p")))
     assert self.driver.find_element(By.CSS_SELECTOR, ".sfError").text == "Last name is required"
   
+  @pytest.mark.last
   def test_special_characters_in_last_nameField(self):
     self.driver.find_element(By.CSS_SELECTOR, ".TK-Button--CTA-Sec").click()
     dropdown = self.driver.find_element(By.ID, "Dropdown-1")
@@ -347,6 +349,7 @@ class Testcontactus():
     WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR,".sfError")))
     assert "Your Last name has special characters." in self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
  
+  @pytest.mark.email
   def test_empty_emailField(self):
     self.driver.find_element(By.CSS_SELECTOR, ".TK-Button--CTA-Sec").click()
     dropdown = self.driver.find_element(By.ID, "Dropdown-1")
@@ -398,7 +401,8 @@ class Testcontactus():
 
     WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, ".sfError")))
     assert "Email address is required" in self.driver.find_element(By.CSS_SELECTOR, ".sfError").text
-
+  
+  @pytest.mark.email
   def test_invalid_email_address(self):
     self.driver.find_element(By.CSS_SELECTOR, ".TK-Button--CTA-Sec").click()
     dropdown = self.driver.find_element(By.ID, "Dropdown-1")
@@ -452,6 +456,7 @@ class Testcontactus():
     WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "#form--1 > form > div > div.sf-fieldWrp.Required.sfErrorWrp > p")))
     assert "Email address is invalid" in self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div.sf-fieldWrp.Required.sfErrorWrp > p").text
 
+  @pytest.mark.phone
   def test_tooltip_phoneField(self):
     self.driver.find_element(By.CSS_SELECTOR, ".TK-Button--CTA-Sec").click() 
     
@@ -472,6 +477,7 @@ class Testcontactus():
 
     assert tooltip_text == "For an even faster response, please leave your telephone number." 
 
+  @pytest.mark.phone
   def test_empty_phone_field(self):
     """input include only "international dialog code" """
     
@@ -523,6 +529,7 @@ class Testcontactus():
 
     assert "Phone is required" in  self.driver.find_element(By.CSS_SELECTOR, "#form--1 > form > div > div.sf-fieldWrp.Required.sfErrorWrp > p.sfError").text
 
+  @pytest.mark.phone
   def test_chars_in_phone(self):
     self.driver.find_element(By.CSS_SELECTOR, ".TK-Button--CTA-Sec").click()
     dropdown = self.driver.find_element(By.ID, "Dropdown-1")
