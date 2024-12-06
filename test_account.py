@@ -139,7 +139,15 @@ class TestTestaccount():
 
   @pytest.mark.xfail()
   def test_login(self):
-    pass
+    self.driver.get("https://www.telerik.com/")
+    self.driver.set_window_size(1536, 816)
+    self.driver.find_element(By.CSS_SELECTOR, "#js-tlrk-nav-not-auth-container svg").click()
+    self.driver.find_element(By.ID, "email").click()
+    self.driver.find_element(By.ID, "email").send_keys("samar.abu.hdeeb@gmail.com")
+    self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
+    self.driver.find_element(By.ID, "password").send_keys("Samar")
+    self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
+    assert self.driver.find_element(By.CSS_SELECTOR, ".Title--xxxl").text == "Telerik Login"
 
 
     
