@@ -122,8 +122,7 @@ class TestTestaccount():
     assert "Country is required" in self.driver.find_element(By.CSS_SELECTOR, "#registerForm > div.row.u-mb15 > div.col-md-6.form-field.col-md-12 > validation-messages > div > span").text
 
   def test_empty_password_in_login(self):
-    self.driver.get("https://www.telerik.com/")
-    self.driver.maximize_window()
+
     self.driver.find_element(By.CSS_SELECTOR, "#js-tlrk-nav-not-auth-container svg").click()
     self.driver.find_element(By.ID, "email").click()
     self.driver.find_element(By.ID, "email").send_keys("samar.abu.hdeeb@gmail.com")
@@ -132,10 +131,15 @@ class TestTestaccount():
     self.driver.find_element(By.XPATH,"/html/body/div[2]/app/div[2]/div/ng-component/div/loader/div[1]/div/div/form/div[4]/button").click()
     WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, ".error-message")))
     assert self.driver.find_element(By.CSS_SELECTOR, ".error-message").text == "Password is required"
-    
 
+  
+  @pytest.mark.skip
+  def test_create_account(self):
+    pass
 
-
+  @pytest.mark.xfail()
+  def test_login(self):
+    pass
 
 
     
