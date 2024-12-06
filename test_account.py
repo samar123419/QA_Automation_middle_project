@@ -133,11 +133,32 @@ class TestTestaccount():
     assert self.driver.find_element(By.CSS_SELECTOR, ".error-message").text == "Password is required"
 
   
-  @pytest.mark.skip
+  @pytest.mark.xfail
   def test_create_account(self):
-    pass
+    self.driver.find_element(By.CSS_SELECTOR, "#js-tlrk-nav-not-auth-container > .TK-Aside-Menu-Button").click()
+    self.driver.find_element(By.ID, "email").click()
+    self.driver.find_element(By.ID, "email").send_keys("1a22ddfghf@gmaail.com")
+    self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
+    self.driver.find_element(By.ID, "password").send_keys("Samar")
+    self.driver.find_element(By.ID, "fist-name").click()
+    self.driver.find_element(By.ID, "fist-name").send_keys("aqw")
+    self.driver.find_element(By.ID, "last-name").click()
+    self.driver.find_element(By.ID, "last-name").send_keys("qwe")
+    self.driver.find_element(By.ID, "company").click()
+    self.driver.find_element(By.ID, "company").send_keys("dfg")
+    self.driver.find_element(By.ID, "phone").click()
+    self.driver.find_element(By.ID, "phone").send_keys("14723")
+    self.driver.find_element(By.CSS_SELECTOR, ".k-input-button:nth-child(3) > .k-button-icon").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
+    self.driver.switch_to.default_content()
+    self.driver.switch_to.frame(0)
+    self.driver.find_element(By.CSS_SELECTOR, "body").click()
+    WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, ".u-mb20")))
+    assert self.driver.find_element(By.CSS_SELECTOR, ".u-mb20").text == " If you did not get your email, check your Spam folder or "
+  
 
-  @pytest.mark.xfail()
+
+  @pytest.mark.skip
   def test_login(self):
     self.driver.find_element(By.CSS_SELECTOR, "#js-tlrk-nav-not-auth-container svg").click()
     self.driver.find_element(By.ID, "email").click()
@@ -149,7 +170,4 @@ class TestTestaccount():
 
 
     
-
-
-
 
